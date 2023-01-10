@@ -1,0 +1,4 @@
+# node_modules ignored by default
+
+# ESLint its a linter only for .js & .jsx files
+dist
