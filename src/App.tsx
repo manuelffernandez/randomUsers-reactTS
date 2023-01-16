@@ -1,13 +1,17 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
+import fetchData from './services/fetchData';
+import UsersList from './components/UsersList';
+import FavList from './components/FavList';
 
 function App() {
-  const [count, setCount] = useState(0);
+  useEffect(() => {
+    // fetchData.getUsers(5);
+  }, []);
 
   return (
     <div className='App'>
-      <h1>{count}</h1>
-      <button onClick={() => setCount(count + 1)}>Sumar</button>
-      <button onClick={() => setCount(0)}>Resetear</button>
+      <UsersList></UsersList>
+      <FavList></FavList>
     </div>
   );
 }
