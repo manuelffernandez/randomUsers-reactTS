@@ -1,23 +1,27 @@
-import GenericButton from './GenericButton';
+import { GenericButton } from './index';
+import { User } from '../interfaces';
 
-const UserCard = () => {
+interface UserCardProps {
+  user: User;
+}
+
+const UserCard = (props: UserCardProps) => {
+  const { user } = props;
   return (
     <div className='userCard'>
-      <img
-        className='userCard__avatar'
-        src='https://robohash.org/molestiaeofficiiset.png?size=300x300&set=set1'
-        alt=''
-      />
-      <div className='userCard__info'>
-        <p>Nombre</p>
-        <p>Id</p>
-        <p>Mail</p>
+      <img className='userCard__avatar' src={user.avatar} alt='' />
+      <div className='userCard__rightside'>
+        <div className='userCard__rightside__info'>
+          <p>Name: {user.name}</p>
+          <p>Id: {user.id}</p>
+          <p>E-mail: {user.email}</p>
+        </div>
+        <GenericButton
+          addedClasses='userCard__rightside__btn'
+          onClick={() => alert('hola')}>
+          Add
+        </GenericButton>
       </div>
-      <GenericButton
-        addedClasses='userCard__addbtn'
-        onClick={() => alert('hola')}>
-        Agregar
-      </GenericButton>
     </div>
   );
 };
