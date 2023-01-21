@@ -1,15 +1,42 @@
-const getUsers = async (userQty: number) => {
-  const user = await fetch(
-    `https://random-data-api.com/api/v2/users?size=${userQty}&is_json=true`
-  )
-    .then(prod => prod.json())
-    .catch(err => {
-      throw new Error(err);
-    });
+import {
+  UsersQty,
+  getUsersReturn,
+  KeyValueParam,
+  APIUser,
+} from '../interfaces';
 
-  console.log(user);
+const API_URL: URL = new URL(
+  'https://random-data-api.com/api/v2/users?is_json=true&size=5'
+);
+
+const setURLParams = (KeyValueParams: Array<KeyValueParam>): void => {
+  KeyValueParams.forEach(KeyValueParam => {
+    API_URL.searchParams.set(KeyValueParam.paramKey, KeyValueParam.paramValue);
+  });
 };
 
-const fetchData = {getUsers}
+const getUsers = (userQty: UsersQty): Promise<getUsersReturn> => {
+  setURLParams([{ paramKey: 'size', paramValue: userQty.toString() }]);
 
-export default fetchData
+  return fetch(API_URL)
+    .then((res: Response): Promise<Array<APIUser>> | never => {
+      if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+      return res.json();
+    })
+    .then(APIUsers => {
+      return {
+        isOk: true,
+        data: APIUsers,
+      };
+    })
+    .catch((err: Error) => {
+      return {
+        isOk: false,
+        data: err.message,
+      };
+    });
+};
+
+const fetchData = { getUsers };
+
+export default fetchData;
