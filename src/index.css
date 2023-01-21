@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
 
+:root {
+  --avatar-width: 150px;
+}
+
 #root {
   font-family: 'Roboto Slab', sans-serif;
 }
@@ -53,14 +57,21 @@
 }
 
 .userCard__avatar {
-  height: 150px;
-  width: 150px;
+  height: var(--avatar-width);
+  width: var(--avatar-width);
   object-fit: cover;
   border: 1px solid gray;
-  border-radius: 75px;
+  border-radius: calc(var(--avatar-width)/2);
 }
 
-.userCard__info {
+.userCard__rightside {
+  width: calc(100% - var(--avatar-width));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userCard__rightside__info {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -69,6 +80,6 @@
   font-size: 1.4rem;
 }
 
-.userCard__addbtn {
-  margin-left: 40%;
+.userCard__rightside__btn {
+  height: calc(var(--avatar-width) / 3);
 }
