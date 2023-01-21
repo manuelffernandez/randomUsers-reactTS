@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { UsersList, FavList } from './components';
+import { UserList, FavList } from './components';
 
 interface AppState {
   error: { isError: boolean; errorMsg?: string };
@@ -16,7 +16,7 @@ function App() {
     if (!error.isError) {
       return (
         <>
-          <UsersList handleError={handleError}></UsersList>
+          <UserList handleError={handleError}></UserList>
           <FavList />
         </>
       );

@@ -5,23 +5,23 @@ import { User, APIUser, UsersQty } from '../interfaces';
 import useCounter from '../hooks/useCounter';
 import mapFromApiToUser from '../utils/usersTransform';
 
-interface UsersListState {
+interface UserListState {
   users: Array<User>;
   usersAmount: {
     amount: UsersQty;
   };
 }
 
-interface UsersListProps {
+interface UserListProps {
   handleError: (errorMsg: string) => void;
 }
 
-const UsersList = (props: UsersListProps): JSX.Element => {
+const UserList = (props: UserListProps): JSX.Element => {
   const { handleError } = props;
-  const [usersAmount, setUsersAmount] = useState<UsersListState['usersAmount']>(
-    { amount: 5 }
-  );
-  const [users, setUsers] = useState<UsersListState['users']>([]);
+  const [usersAmount, setUsersAmount] = useState<UserListState['usersAmount']>({
+    amount: 5,
+  });
+  const [users, setUsers] = useState<UserListState['users']>([]);
   const [count, handleAddition] = useCounter(5);
 
   useEffect(() => {
@@ -56,4 +56,4 @@ const UsersList = (props: UsersListProps): JSX.Element => {
   );
 };
 
-export default UsersList;
+export default UserList;
