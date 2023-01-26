@@ -1,14 +1,34 @@
 import { useState } from 'react';
+import { UserList, FavList } from './components';
+import FavListProvider from './contexts/FavListProvider';
 
-function App() {
-  const [count, setCount] = useState(0);
+interface AppState {
+  error: { isError: boolean; errorMsg?: string };
+}
+
+function App(): JSX.Element {
+  const [error, setError] = useState<AppState['error']>({ isError: false });
+
+  const handleError = (errorMsg: string): void => {
+    setError({ isError: true, errorMsg });
+  };
+
+  const loadContent = (): JSX.Element => {
+    if (!error.isError) {
+      return (
+        <>
+          <UserList handleError={handleError}></UserList>
+          <FavList />
+        </>
+      );
+    }
+    return <h1>Error {error.errorMsg}</h1>;
+  };
 
   return (
-    <div className='App'>
-      <h1>{count}</h1>
-      <button onClick={() => setCount(count + 1)}>Sumar</button>
-      <button onClick={() => setCount(0)}>Resetear</button>
-    </div>
+    <FavListProvider>
+      <div className='App'>{loadContent()}</div>
+    </FavListProvider>
   );
 }
 

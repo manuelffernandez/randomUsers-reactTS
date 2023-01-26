@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+:root {
+  --avatar-width: 150px;
+}
+
+#root {
+  font-family: 'Roboto Slab', sans-serif;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.genericButton {
+  font-family: 'Roboto Slab', sans-serif;
+  font-size: 1rem;
+  color: black;
+  border: 1px solid black;
+  background-color: transparent;
+  margin: 0 5px;
+  padding: 10px;
+  transition: all 0.2s;
+}
+
+.genericButton:hover {
+  cursor: pointer;
+  background-color: black;
+  color: white;
+}
+
+.users {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.users__title {
+  text-align: center;
+}
+
+.users__list {
+  display: flex;
+  flex-direction:  column;
+  width: 60%;
+}
+
+.userCard {
+  display:  flex;
+  align-items: center;
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.userCard__avatar {
+  height: var(--avatar-width);
+  width: var(--avatar-width);
+  object-fit: cover;
+  border: 1px solid gray;
+  border-radius: calc(var(--avatar-width)/2);
+}
+
+.userCard__rightside {
+  width: calc(100% - var(--avatar-width));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userCard__rightside__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 50px;
+
+  font-size: 1.4rem;
+}
+
+.userCard__rightside__btn {
+  height: calc(var(--avatar-width) / 3);
+}
