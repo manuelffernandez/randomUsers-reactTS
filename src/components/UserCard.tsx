@@ -3,12 +3,17 @@ import { User } from '../interfaces';
 
 interface UserCardProps {
   user: User;
+  btnType: {
+    title: string;
+    funct: (u: User) => void;
+  };
 }
 
 const UserCard = (props: UserCardProps) => {
-  const { user } = props;
+  const { user, btnType } = props;
+
   return (
-    <div className='userCard'>
+    <li className='userCard'>
       <img className='userCard__avatar' src={user.avatar} alt='' />
       <div className='userCard__rightside'>
         <div className='userCard__rightside__info'>
@@ -18,11 +23,11 @@ const UserCard = (props: UserCardProps) => {
         </div>
         <GenericButton
           addedClasses='userCard__rightside__btn'
-          onClick={() => alert('hola')}>
-          Add
+          onClick={() => btnType.funct(user)}>
+          {btnType.title}
         </GenericButton>
       </div>
-    </div>
+    </li>
   );
 };
 
