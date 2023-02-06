@@ -1,8 +1,8 @@
-import { useFavList } from '../hooks/useFavList';
+import { getFavListContext } from '../contexts/FavListContext';
 import { UserCard } from './';
 
 const FavList = () => {
-  const { favListState, onRemove } = useFavList();
+  const { favListState, onRemove } = getFavListContext();
 
   return (
     <div className='users'>

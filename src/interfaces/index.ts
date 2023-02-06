@@ -4,8 +4,14 @@ import {
   FavListProviderProps,
   FavListState,
   FavListProviderValue,
+  FavListAction,
 } from './contexts';
 
 export type { APIUser, APIData, KeyValueParam, getUsersReturn };
 export type { UsersQty, User };
-export type { FavListProviderProps, FavListState, FavListProviderValue };
+export type {
+  FavListProviderProps,
+  FavListState,
+  FavListProviderValue,
+  FavListAction,
+};

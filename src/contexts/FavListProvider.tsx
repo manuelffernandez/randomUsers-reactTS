@@ -1,14 +1,11 @@
 import { FavListContext } from './FavListContext';
-import { useReducer } from 'react';
-import { FavListProviderProps, FavListState, User } from '../interfaces';
-import { FavListReducer } from './FavListReducer';
-
-const INITIAL_STATE: FavListState['favList'] = [];
+import { FavListProviderProps, User } from '../interfaces';
+import useFavList from '../hooks/useFavList';
 
 const FavListProvider = (props: FavListProviderProps): JSX.Element => {
   const { children } = props;
 
-  const [favListState, dispatch] = useReducer(FavListReducer, INITIAL_STATE);
+  const [favListState, dispatch] = useFavList();
 
   const onAdd = (user: User) => {
     dispatch({ type: 'addUser', payload: user });

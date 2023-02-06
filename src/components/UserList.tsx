@@ -4,7 +4,7 @@ import fetchData from '../services/fetchData';
 import { User, APIUser, UsersQty } from '../interfaces';
 import useCounter from '../hooks/useCounter';
 import mapFromApiToUser from '../utils/usersTransform';
-import { useFavList } from '../hooks/useFavList';
+import { getFavListContext } from '../contexts/FavListContext';
 
 interface UserListState {
   users: Array<User>;
@@ -27,7 +27,7 @@ const UserList = (props: UserListProps): JSX.Element => {
 
   const [count, handleAddition] = useCounter(5);
 
-  const { onAdd } = useFavList();
+  const { onAdd } = getFavListContext();
 
   useEffect(() => {
     fetchData.getUsers(usersAmount.amount).then(APIResponse => {
